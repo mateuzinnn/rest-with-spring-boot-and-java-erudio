@@ -27,7 +27,75 @@ public class MathController {
 		
 		return convertToDouble(numberOne) + convertToDouble(numberTwo);
 	}
-
+	
+	@RequestMapping(value = "/subtract/{numberOne}/{numberTwo}",
+			method=RequestMethod.GET)
+	public Double subtract(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo
+		) throws Exception{
+		
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
+		}	
+		
+		return convertToDouble(numberOne) - convertToDouble(numberTwo);
+	}
+	
+	@RequestMapping(value = "/multiply/{numberOne}/{numberTwo}",
+			method=RequestMethod.GET)
+	public Double multiply(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo
+		) throws Exception{
+		
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
+		}	
+		
+		return convertToDouble(numberOne) * convertToDouble(numberTwo);
+	}
+	
+	@RequestMapping(value = "/divide/{numberOne}/{numberTwo}",
+			method=RequestMethod.GET)
+	public Double divide(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo
+		) throws Exception{
+		
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
+		}	
+		
+		return convertToDouble(numberOne) / convertToDouble(numberTwo);
+	}
+	
+	@RequestMapping(value = "/average/{numberOne}/{numberTwo}",
+			method=RequestMethod.GET)
+	public Double average(
+			@PathVariable(value = "numberOne") String numberOne,
+			@PathVariable(value = "numberTwo") String numberTwo
+		) throws Exception{
+		
+		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
+		}	
+		
+		return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+	}
+	
+	@RequestMapping(value = "/sroot/{number}",
+			method=RequestMethod.GET)
+	public Double sroot(
+			@PathVariable(value = "number") String number
+		) throws Exception{
+		
+		if(!isNumeric(number)) {
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
+		}	
+		
+		return Math.sqrt(convertToDouble(number));
+	}
 
 	private Double convertToDouble(String strNumber) {
 		if(strNumber == null) return 0D;
