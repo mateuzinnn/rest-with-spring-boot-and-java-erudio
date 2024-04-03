@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.erudio.exceptions.UnsuportedMathOperationException;
+
 @RestController
 public class MathController {
 	private final AtomicLong counter = new AtomicLong();
@@ -20,7 +22,7 @@ public class MathController {
 		) throws Exception{
 		
 		if(!isNumeric(numberOne) || !isNumeric(numberTwo)) {
-			throw new Exception();
+			throw new UnsuportedMathOperationException("Please set a numeric value!");
 		}	
 		
 		return convertToDouble(numberOne) + convertToDouble(numberTwo);
